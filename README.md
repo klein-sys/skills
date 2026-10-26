@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Platform: Antigravity & Gemini](https://img.shields.io/badge/Platform-Antigravity%20%7C%20Gemini-green.svg)](#compatibility)
-[![Architecture: Modular Categories](https://img.shields.io/badge/Architecture-Modular%20Categories-purple.svg)](#repository-structure)
+[![Architecture: Modular Categories](https://img.shields.io/badge/Architecture-Modular%20Categories-purple.svg)](#repository-categories)
 
 A modular, multi-category AI coding agent skill repository for **Google Antigravity**, **Gemini**, and multi-agent harnesses.
 
@@ -10,11 +10,11 @@ Every domain is packaged in its own dedicated, self-contained category folder, a
 
 ---
 
-## Repository Structure
+## Repository Structure & Categories
 
 ```
 klein-sys/skills/
-├── software-dev/                      # All software development skills & docs
+├── software-dev/                      # Core Software Engineering, AppSec & UI/UX Pack
 │   ├── accessibility-responsive-design/
 │   ├── authorized-web-security-testing/
 │   ├── code-review-qa/
@@ -23,49 +23,60 @@ klein-sys/skills/
 │   ├── software-engineering-planning/
 │   ├── systematic-debugging-tdd/
 │   ├── ui-ux-design-systems/
-│   ├── scripts/                       # Validator for software-dev skills
-│   ├── README.md                      # Category guide & instructions
+│   ├── scripts/                       # Validator for software-dev
+│   ├── README.md                      # Category guide & installation manual
 │   ├── ATTRIBUTION.md                 # Open-source research & license attribution
 │   ├── COMPATIBILITY_REPORT.md        # Technical agent compatibility report
 │   └── VALIDATION_CHECKLIST.md        # Structural validation matrix
 │
-├── <future-category>/                 # Future skill categories (e.g., android-dev, cloud-infra)
-├── README.md                          # Repository hub index & guide
+├── flashdock/                         # FlashDock Workstation & Android Device Tools
+│   ├── flashdock-workstation/         # Zero-brick protocols, QThread async & design tokens
+│   ├── android-cli/                   # Android CLI, ADB, Fastboot & AVD emulator tools
+│   ├── scripts/                       # Validator for flashdock
+│   └── README.md                      # FlashDock category guide
+│
+├── agent-productivity/                # Agent Workflow Loops & Engineering Lifecycles
+│   ├── productivity/                  # grill-me, grilling, handoff, teach, wait-what
+│   ├── engineering/                   # to-spec, to-tickets, triage, implement, code-review
+│   ├── in-progress/                   # loop-me, chief-of-staff, claude-handoff, writing
+│   ├── misc/                          # git-guardrails, setup-pre-commit, scaffold
+│   ├── scripts/                       # Validator for agent-productivity
+│   ├── ATTRIBUTION.md                 # Matt Pocock (mattpocock/skills) attribution
+│   └── README.md                      # Agent productivity guide
+│
+├── README.md                          # Repository hub index
 └── LICENSE                            # MIT License
 ```
 
 ---
 
-## Active Skill Categories
+## Active Skill Packs
 
-### 1. [`software-dev/`](./software-dev/) — Software Development & Quality Pack
-A complete, production-grade skill suite for senior software engineering, quality assurance, application security, and UI/UX design:
+### 1. [`software-dev/`](./software-dev/) — Software Engineering & Design Systems
+Comprehensive standards for full-stack engineering, test-driven development, application security reviews (STRIDE / OWASP Top 10), ethical web security testing (WSTG v4.2), design systems, accessibility (WCAG 2.1 AA), and multi-tier code reviews.
+- *See [software-dev README](./software-dev/README.md).*
 
-- **[`software-engineering-planning`](./software-dev/software-engineering-planning/SKILL.md)**: Architectural specs, risk sequencing, ADRs, and phased task breakdowns with Definition of Done.
-- **[`systematic-debugging-tdd`](./software-dev/systematic-debugging-tdd/SKILL.md)**: 4-phase root cause diagnosis protocol and Red-Green-Refactor test discipline.
-- **[`git-github-workflows`](./software-dev/git-github-workflows/SKILL.md)**: Conventional Commits, branch hygiene, safe rebasing, and `git worktree` context switching.
-- **[`secure-coding-review`](./software-dev/secure-coding-review/SKILL.md)**: Trust boundary identification, STRIDE threat modeling, and OWASP Top 10 code defenses.
-- **[`authorized-web-security-testing`](./software-dev/authorized-web-security-testing/SKILL.md)**: Ethical penetration testing simulation and non-destructive OWASP WSTG v4.2 verification.
-- **[`ui-ux-design-systems`](./software-dev/ui-ux-design-systems/SKILL.md)**: CSS design tokens, typography pairings, bento layouts, and anti-generic design rules.
-- **[`accessibility-responsive-design`](./software-dev/accessibility-responsive-design/SKILL.md)**: Mobile-first fluid layouts and WCAG 2.1 Level AA compliance.
-- **[`code-review-qa`](./software-dev/code-review-qa/SKILL.md)**: 6-dimension review scorecard (Correctness, Security, Reliability, Tests, Maintainability, Scale).
+### 2. [`flashdock/`](./flashdock/) — FlashDock & Android Workstation Standards
+Architectural rules, zero-brick safety guarantees, radio calibration backups (`efs`, `nvram`, `persist`), AVB/ARP anti-rollback guards, `QThread` async worker lifecycles, and Android device CLI tools (`adb`, `fastboot`, `android`).
+- *See [flashdock README](./flashdock/README.md).*
 
-*See the [software-dev README](./software-dev/README.md) for detailed workflows, templates, and references.*
+### 3. [`agent-productivity/`](./agent-productivity/) — Agent Workflows & Interaction Loops
+Originated from **Matt Pocock's Agent Skills** ([mattpocock/skills](https://github.com/mattpocock/skills)). Powers interactive `/grill-me` requirement interviews, context handoffs, issue triage, technical specs (`to-spec`, `to-tickets`), and task execution loops.
+- *See [agent-productivity README](./agent-productivity/README.md).*
 
 ---
 
-## Adding New Skill Categories in the Future
+## Adding New Categories in the Future
 
-Because this repository is organized by category folders, you can easily add new skill packs:
-
+To add a new category (e.g., `cloud-infra/`, `ai-ml/`, `devops/`):
 1. **Create your new category folder**:
    ```bash
-   mkdir android-dev
+   mkdir cloud-infra
    ```
-2. **Add skills in standard Antigravity format**:
+2. **Add skills in Antigravity format**:
    ```text
-   android-dev/
-   ├── my-new-skill/
+   cloud-infra/
+   ├── terraform-deploy/
    │   ├── SKILL.md
    │   ├── references/
    │   └── examples/
@@ -73,8 +84,8 @@ Because this repository is organized by category folders, you can easily add new
    ```
 3. **Commit and push**:
    ```bash
-   git add android-dev/
-   git commit -m "feat(skills): add android-dev category pack"
+   git add cloud-infra/
+   git commit -m "feat(skills): add cloud-infra category pack"
    git push
    ```
 
@@ -83,16 +94,17 @@ Because this repository is organized by category folders, you can easily add new
 ## Installation & Enabling Skills in Your Agent
 
 ### Method 1: Project Workspace (.agents/skills)
-Copy any skill category into your project's `.agents/skills` directory:
+Copy any category's skills into your project workspace:
 ```powershell
-# Copy software-dev skills into your project workspace:
 $project = "C:\Path\To\YourProject"
 New-Item -ItemType Directory -Force -Path "$project\.agents\skills"
+
+# Example: Copy software-dev or flashdock skills:
 Copy-Item -Recurse -Force "software-dev\*" "$project\.agents\skills\"
 ```
 
 ### Method 2: Global Configuration (~/.gemini/config/skills)
-To make a category's skills available across all projects on your system:
+To make skills available globally across all conversations:
 ```powershell
 $global = "$env:USERPROFILE\.gemini\config\skills"
 New-Item -ItemType Directory -Force -Path $global
