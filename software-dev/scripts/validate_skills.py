@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Skill Validator for klein-sys/skills repository.
+Skill Validator for software-dev category in klein-sys/skills repository.
 Recursively validates:
-1. Category directories (e.g. software-dev/) and .agents/skills/.
+1. All skill directories inside software-dev/.
 2. YAML frontmatter parsing (name, description).
 3. Name matches folder naming conventions.
 4. Internal markdown links point to existing files.
@@ -13,7 +13,8 @@ import re
 import sys
 import pathlib
 
-ROOT_DIR = pathlib.Path(__file__).resolve().parent.parent
+SCRIPT_DIR = pathlib.Path(__file__).resolve().parent
+CATEGORY_DIR = SCRIPT_DIR.parent
 
 def parse_frontmatter(content: str):
     match = re.match(r"^---\r?\n(.*?)\r?\n---\r?\n(.*)$", content, re.DOTALL)
@@ -88,14 +89,18 @@ def validate_skill(skill_path: pathlib.Path):
 
     return len(errors) == 0, errors, warnings
 
-def validate_directory(target_dir: pathlib.Path):
-    print(f"\nScanning: {target_dir.relative_to(ROOT_DIR)}")
+def main():
+    print("=" * 60)
+    print(" Validating Software Development Skills (software-dev/)")
+    print("=" * 60)
+    print(f"Scanning category folder: {CATEGORY_DIR}\n")
+    
     passed = 0
     failed = 0
     all_errors = []
     
-    for item in sorted(target_dir.iterdir()):
-        if item.is_dir() and (item / "SKILL.md").exists():
+    for item in sorted(CATEGORY_DIR.iterdir()):
+        if item.is_dir() and item.name != "scripts" and (item / "SKILL.md").exists():
             is_valid, errs, warns = validate_skill(item)
             if is_valid:
                 print(f"  [PASS] {item.name}")
@@ -108,32 +113,14 @@ def validate_directory(target_dir: pathlib.Path):
                 failed += 1
             for w in warns:
                 print(f"         WARN:  {w}")
-    return passed, failed, all_errors
-
-def main():
-    print("=" * 60)
-    print(" Validating klein-sys/skills Repository")
-    print("=" * 60)
-    
-    total_passed = 0
-    total_failed = 0
-    total_errors = []
-    
-    categories = [ROOT_DIR / "software-dev", ROOT_DIR / ".agents" / "skills"]
-    for cat in categories:
-        if cat.exists():
-            p, f, errs = validate_directory(cat)
-            total_passed += p
-            total_failed += f
-            total_errors.extend(errs)
-            
+                
     print("\n" + "-" * 60)
-    print(f"Validation Summary: {total_passed} passed, {total_failed} failed.")
-    if total_errors:
-        print(f"Errors encountered: {len(total_errors)}")
+    print(f"Validation Summary: {passed} passed, {failed} failed.")
+    if all_errors:
+        print(f"Total Errors: {len(all_errors)}")
         sys.exit(1)
     else:
-        print("All skills across all categories verified successfully!")
+        print("All skills in software-dev verified successfully!")
         sys.exit(0)
 
 if __name__ == "__main__":
